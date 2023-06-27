@@ -69,7 +69,7 @@ namespace Luwa_sBackend.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("api/v1/SignUpPartner")]
-        public async Task<IActionResult> SignUpPartner([FromBody] SignUpPartnerRequestModel model)
+        public async Task<IActionResult> SignUpPartner([FromForm]SignUpPartnerRequestModel model)
         {
             try
             {

@@ -21,6 +21,7 @@ using Luwa_sBackend.Data.Constants;
 using Microsoft.EntityFrameworkCore;
 using Luwa_sBackend.Services.Interfaces;
 using LuwasBackend.Data.Enums;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LuwasBackend.Services.Implementation
 {
@@ -138,15 +139,15 @@ namespace LuwasBackend.Services.Implementation
 
 
 
-
-            await _userManager.AddToRoleAsync(user, UserRoles.User);
             var x = await _userManager.CreateAsync(user, model.Password);
+            await _userManager.AddToRoleAsync(user, UserRoles.User);
+            
             var userDto = map.Map<UserDto>(user);
             return ReturnedResponse.SuccessResponse("User successfuly registered", userDto, StatusCodes.Successful);
         }
 
 
-        public async Task<ApiResponse> CreatePartner(SignUpPartnerRequestModel model)
+        public async Task<ApiResponse> CreatePartner([FromForm] SignUpPartnerRequestModel model)
         {
             var roles = await CreateRoles();
             if (!roles)
