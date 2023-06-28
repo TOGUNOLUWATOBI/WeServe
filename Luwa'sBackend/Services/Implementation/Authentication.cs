@@ -156,7 +156,7 @@ namespace LuwasBackend.Services.Implementation
             }
             var isUserExist = await _userManager.FindByEmailAsync(model.Email);
 
-            if (isUserExist != null)
+            if (isUserExist != null )
                 return ReturnedResponse.ErrorResponse("User with this email already exists", null, StatusCodes.RecordExist);
 
             var resp = Luwa_sBackend.Core.Utility.ValidatePassword(model.Password);
@@ -187,9 +187,9 @@ namespace LuwasBackend.Services.Implementation
 
 
 
-
-            await _userManager.AddToRoleAsync(user, UserRoles.Partners);
             var x = await _userManager.CreateAsync(user, model.Password);
+            await _userManager.AddToRoleAsync(user, UserRoles.Partners);
+            
 
             string logoId = "";
             string ProfilePictureId = "";
@@ -218,6 +218,8 @@ namespace LuwasBackend.Services.Implementation
                 Logo = logoId,
                 ProfilePicture= ProfilePictureId
             };
+            context.Add(partner);
+            await context.SaveChangesAsync();
             var userDto = map.Map<UserDto>(user);
             return ReturnedResponse.SuccessResponse("Partner successfuly registered", userDto, StatusCodes.Successful);
         }

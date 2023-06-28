@@ -80,7 +80,7 @@ namespace LuwasBackend.Services.Implementation
             {
                 var resp1 = await GetPartnersByCategory(Categories.programming_and_tech.ToString());
                 var resp2 = await GetPartnersByCategory(Categories.writing.ToString());
-                var resp3 = await GetPartnersByCategory(Categories.graphics_design.ToString());
+                var resp3 = await GetPartnersByCategory(Categories.photography.ToString());
                 var resp4 = await GetPartnersByCategory(Categories.hairstyling.ToString());
 
 
@@ -94,7 +94,7 @@ namespace LuwasBackend.Services.Implementation
                 {
                     new Dashboardpartners() { Name = Categories.programming_and_tech.ToString(), Parnters = partnerByCat1 },
                     new Dashboardpartners() { Name = Categories.writing.ToString(), Parnters = partnerByCat2 },
-                    new Dashboardpartners() { Name = Categories.graphics_design.ToString(), Parnters = partnerByCat3 },
+                    new Dashboardpartners() { Name = Categories.photography.ToString(), Parnters = partnerByCat3 },
                     new Dashboardpartners() { Name = Categories.hairstyling.ToString(), Parnters = partnerByCat4 }
                 };
 
